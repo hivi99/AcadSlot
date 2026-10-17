@@ -1,0 +1,606 @@
+
+/* ==============================
+   AcadSlot - Global Theme
+   ============================== */
+
+:root {
+  --primary: #32699D;
+  --secondary: #69A4BE;
+  --accent: #C9DFDC;
+  --background: #F3F0E9;
+  --white: #FFFFFF;
+  --text: #263746;
+  --muted-text: #647786;
+  --border: #D9E2E5;
+  --success: #D5EBDD;
+  --success-text: #246744;
+  --warning: #F8E8C8;
+  --warning-text: #875D16;
+  --danger: #F6DADA;
+  --danger-text: #9A3535;
+  --shadow: 0 4px 16px rgba(50, 105, 157, 0.08);
+}
+
+/* Reset */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--background);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ==============================
+   Main Teacher Layout
+   ============================== */
+
+.teacher-layout {
+  display: flex;
+  min-height: 100vh;
+  background: var(--background);
+}
+
+.teacher-main {
+  flex: 1;
+  min-width: 0;
+  padding: 32px;
+  overflow-x: auto;
+}
+
+/* ==============================
+   Sidebar
+   ============================== */
+
+
+/* Sidebar container */
+.sidebar {
+  width: 275px;
+  min-width: 275px;
+  min-height: 100vh;
+  padding: 12px 14px;
+  background-color: #32699D;
+  color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+}
+
+/* AcadSlot logo and name */
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 6px 12px;
+  margin: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.sidebar-logo img {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+}
+
+.sidebar-logo h2 {
+  margin: 0;
+  color: #FFFFFF;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+/* Teacher Portal heading */
+.sidebar-heading {
+  margin: 12px 0 8px;
+  padding: 8px 6px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
+/* Navigation menu */
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.sidebar-nav a {
+  display: block;
+  padding: 12px 14px;
+  color: #FFFFFF;
+  text-decoration: none;
+  font-size: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+/* Hover and active links */
+.sidebar-nav a:hover,
+.sidebar-nav a.active {
+  background-color: #69A4BE;
+  border-color: #FFFFFF;
+  color: #FFFFFF;
+}
+
+/* Teacher profile at bottom */
+.sidebar-profile {
+  margin-top: auto;
+  padding: 14px 6px 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.sidebar-profile p {
+  margin: 0 0 4px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.sidebar-profile small {
+  color: #DCEAF2;
+  font-size: 12px;
+}
+
+/* Mobile layout */
+@media (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    min-width: 0;
+    min-height: auto;
+  }
+
+  .sidebar-nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .sidebar-nav a {
+    flex: 1 1 auto;
+  }
+
+  .sidebar-profile {
+    margin-top: 14px;
+  }
+}
+
+
+/* ==============================
+   Headings and Text
+   ============================== */
+
+h1,
+h2,
+h3,
+h4 {
+  color: var(--primary);
+}
+
+h1 {
+  margin: 0 0 8px;
+  font-size: 30px;
+}
+
+h2 {
+  font-size: 23px;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+.page-subtitle {
+  margin: 0 0 28px;
+  color: var(--muted-text);
+}
+
+/* ==============================
+   Dashboard Header
+   ============================== */
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.dashboard-header p {
+  color: var(--muted-text);
+}
+
+/* ==============================
+   Statistics Cards
+   ============================== */
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.stat-card {
+  padding: 22px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  border-top: 4px solid var(--secondary);
+}
+
+.stat-card p {
+  margin: 0 0 12px;
+  color: var(--muted-text);
+  font-size: 14px;
+}
+
+.stat-card h2 {
+  margin: 0;
+  font-size: 30px;
+  color: var(--primary);
+}
+
+/* ==============================
+   Content Panels
+   ============================== */
+
+.panel,
+.dashboard-section {
+  padding: 24px;
+  margin-bottom: 24px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+}
+
+.panel h2,
+.dashboard-section h2 {
+  margin-top: 0;
+}
+
+/* ==============================
+   Tables
+   ============================== */
+
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--white);
+}
+
+thead {
+  background: var(--accent);
+}
+
+th {
+  color: var(--primary);
+  font-weight: 700;
+  text-align: left;
+}
+
+th,
+td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+}
+
+tbody tr:hover {
+  background: #F5F9F9;
+}
+
+/* ==============================
+   Status Badges
+   ============================== */
+
+.status-badge {
+  display: inline-block;
+  padding: 5px 11px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.status-pending {
+  background: var(--warning);
+  color: var(--warning-text);
+}
+
+.status-accepted,
+.status-completed {
+  background: var(--success);
+  color: var(--success-text);
+}
+
+.status-rejected {
+  background: var(--danger);
+  color: var(--danger-text);
+}
+
+/* ==============================
+   Buttons
+   ============================== */
+
+button,
+.btn {
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-weight: 600;
+  transition: background 0.2s ease;
+}
+
+.btn-primary,
+button.primary {
+  background: var(--primary);
+  color: var(--white);
+}
+
+.btn-primary:hover,
+button.primary:hover {
+  background: #244F78;
+}
+
+.btn-secondary,
+button.secondary {
+  background: var(--accent);
+  color: var(--primary);
+}
+
+.btn-secondary:hover,
+button.secondary:hover {
+  background: #B7D3D0;
+}
+
+.btn-danger,
+button.danger {
+  background: var(--danger);
+  color: var(--danger-text);
+}
+
+/* ==============================
+   Forms and Inputs
+   ============================== */
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 11px 12px;
+  color: var(--text);
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  outline: none;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--secondary);
+  box-shadow: 0 0 0 3px rgba(105, 164, 190, 0.2);
+}
+
+input[type="checkbox"] {
+  width: auto;
+}
+
+/* ==============================
+   Availability and Sessions
+   ============================== */
+
+.availability-card,
+.session-card,
+.notification-card {
+  padding: 18px;
+  margin-bottom: 16px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.availability-card {
+  border-left: 4px solid var(--secondary);
+}
+
+.session-card {
+  border-left: 4px solid var(--primary);
+}
+
+.notification-card {
+  border-left: 4px solid var(--accent);
+}
+
+.session-card p,
+.notification-card p {
+  margin: 6px 0;
+  color: var(--muted-text);
+}
+
+/* ==============================
+   Schedule
+   ============================== */
+
+.schedule-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.schedule-item {
+  padding: 14px 16px;
+  background: #EDF4F6;
+  border-left: 4px solid var(--secondary);
+  border-radius: 8px;
+}
+
+.schedule-item p {
+  margin: 4px 0;
+}
+
+/* ==============================
+   Empty States
+   ============================== */
+
+.empty-state {
+  padding: 32px 20px;
+  text-align: center;
+  background: var(--white);
+  border: 1px dashed var(--border);
+  border-radius: 12px;
+  color: var(--muted-text);
+}
+
+/* ==============================
+   Responsive Design
+   ============================== */
+
+@media (max-width: 1000px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .teacher-main {
+    padding: 24px;
+  }
+}
+
+@media (max-width: 700px) {
+  .teacher-layout {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    min-width: 0;
+    min-height: auto;
+    padding: 12px;
+  }
+
+  .sidebar-logo {
+    margin-bottom: 10px;
+  }
+
+  .sidebar nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .sidebar nav a {
+    padding: 9px 11px;
+    font-size: 13px;
+  }
+
+  .sidebar-profile {
+    margin-top: 16px;
+  }
+
+  .teacher-main {
+    padding: 18px;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .panel,
+  .dashboard-section {
+    padding: 16px;
+  }
+
+  h1 {
+    font-size: 25px;
+  }
+
+  th,
+  td {
+    padding: 10px;
+    white-space: nowrap;
+  }
+}
+/* Border below every sidebar menu item */
+.sidebar nav a {
+  display: block;
+  padding: 14px 16px;
+  color: #FFFFFF;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 0;
+  transition: background 0.2s ease;
+}
+
+/* Hover effect */
+.sidebar nav a:hover,
+.sidebar nav a.active {
+  background-color: #69A4BE;
+  color: #FFFFFF;
+}
+
+/* Optional: border around the sidebar logo/header */
+.sidebar-logo {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+  padding-bottom: 18px;
+  margin-bottom: 16px;
+}
+.sidebar nav a {
+  display: block;
+  padding: 14px 16px;
+  margin-bottom: 8px;
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 8px;
+  text-decoration: none;
+}
+
+.sidebar nav a:hover,
+.sidebar nav a.active {
+  background-color: #69A4BE;
+  border-color: #FFFFFF;
+}
