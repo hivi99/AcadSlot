@@ -13,14 +13,16 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/teacher" element={<FacultyLayout />}>
-          <Route index element={<TeacherDashboard />} />
-          <Route path="requests" element={<DoubtRequest />} />
-          <Route path="availability" element={<FacultyAvailability />} />
-          <Route path="sessions" element={<FacultySession />} />
-          <Route path="notifications" element={<TeacherNotif />} />
-          <Route path="services" element={<TeacherServiceRequest />} />
-        </Route>
+        
+<Route path="/teacher" element={<FacultyLayout />}>
+  <Route index element={<TeacherDashboard />} />
+  <Route path="requests" element={<DoubtRequest />} />
+  <Route path="availability" element={<FacultyAvailability />} />
+  <Route path="sessions" element={<FacultySession />} />
+  <Route path="notifications" element={<TeacherNotif />} />
+  <Route path="services" element={<TeacherServiceRequest />} />
+</Route>
+
 
         <Route path="/" element={<Navigate to="/teacher" replace />} />
         <Route path="*" element={<Navigate to="/teacher" replace />} />
