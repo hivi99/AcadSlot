@@ -1,16 +1,11 @@
-
+import { useEffect, useState } from 'react';
+import { Bell, Check, RefreshCw } from 'lucide-react';
+import { teacherApi } from '../../../services/api';
 export default function TeacherNotif() {
-  return (
-    <section className="dashboard-panel">
-      <h1>Notifications</h1>
-      <div className="notification-item">
-        <strong>New doubt request</strong>
-        <p>A student has requested a doubt-solving session.</p>
-      </div>
-      <div className="notification-item">
-        <strong>Session reminder</strong>
-        <p>Check your upcoming teaching schedule.</p>
-      </div>
-    </section>
-  );
+ const [items, setItems] = useState([]); const [loading, setLoading] = useState(true); const [error, setError] = useState(''); const [busyId, setBusyId] = useState(null);
+ async function load() { setLoading(true); setError(''); try { const data = await teacherApi.notifications(); setItems(Array.isArray(data) ? data : []); } catch(e) { setError(e.message || 'Could not load notifications.'); } finally { setLoading(false); } }
+ useEffect(() => { load(); }, []);
+ async function markRead(item) { const id = item.id; setBusyId(id); setError(''); try { await teacherApi.markNotificationRead(id); setItems(current => current.map(n => n.id === id ? { ...n, read: true, isRead: true } : n)); } catch(e) { setError(e.message || 'Could not mark notification as read.'); } finally { setBusyId(null); } }
+ const unread = items.filter(n => !(n.read ?? n.isRead)).length;
+ return <div className="teacher-page"><header className="teacher-page-header"><div><p className="eyebrow">TEACHER PORTAL</p><h1>Notifications</h1><p>You have {unread} unread notification{unread === 1 ? '' : 's'}.</p></div><button className="teacher-btn teacher-btn-light" onClick={load}><RefreshCw size={16}/> Refresh</button></header>{error && <div className="teacher-alert error">{error}</div>}<section className="teacher-panel"><div className="teacher-panel-heading"><div><h2>All notifications</h2><p>Updates from your AcadSlot account.</p></div></div>{loading ? <div className="teacher-empty">Loading notifications…</div> : items.length === 0 ? <div className="teacher-empty"><Bell size={30}/><h3>No notifications yet</h3><p>Notifications will appear here when there are updates.</p></div> : <div className="teacher-notification-list">{items.map(n => { const isRead = Boolean(n.read ?? n.isRead); return <article className={`teacher-notification ${isRead ? 'is-read' : 'is-unread'}`} key={n.id}><span className="teacher-notification-icon"><Bell size={18}/></span><div className="teacher-notification-body"><h3>{n.title || 'Notification'}</h3><p>{n.message || 'No message provided.'}</p><small>{n.createdAt ? new Date(n.createdAt).toLocaleString('en-IN') : ''}</small></div>{!isRead && <button className="teacher-btn teacher-btn-light" disabled={busyId === n.id} onClick={() => markRead(n)}><Check size={15}/> Mark read</button>}</article>; })}</div>}</section></div>;
 }
