@@ -39,10 +39,6 @@ export default function Sidebar() {
           Sessions
         </NavLink>
 
-        <NavLink to="/teacher/notifications">
-          Notifications
-        </NavLink>
-
         <NavLink to="/teacher/services">
           Service Requests
         </NavLink>
