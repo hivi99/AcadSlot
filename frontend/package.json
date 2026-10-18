@@ -1,4 +1,3 @@
-
 {
   "name": "acadslot",
   "private": true,
@@ -10,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "lucide-react": "^1.59.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.0.0"
