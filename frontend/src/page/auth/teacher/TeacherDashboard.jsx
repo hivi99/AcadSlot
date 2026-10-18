@@ -1,103 +1,138 @@
+import { Link } from "react-router-dom";
+import {
+  MessageCircle,
+  CalendarClock,
+  CalendarCheck,
+  ClipboardList,
+  Bell,
+  ArrowRight,
+  Lightbulb,
+} from "lucide-react";
 
-import StatCard from "../../../components/StatCard";
-import StatusBadge from "../../../components/StatusBadge";
+import sampleRequests from "../../../data/sampleRequests";
+import sampleSessions from "../../../data/sampleSessions";
+import NotificationBell from "../../../components/NotificationBell";
 
 export default function TeacherDashboard() {
-  const requests = [
+  const pendingDoubts = sampleRequests.filter(
+    (request) => request.status === "Pending"
+  ).length;
+
+  const upcomingSessions = sampleSessions.length;
+
+  const quickActions = [
     {
-      id: 1,
-      student: "Rahul Sharma",
-      subject: "DBMS",
-      doubt: "Normalization and 3NF",
-      time: "10:00 AM",
-      status: "Pending",
+      title: "Doubt Requests",
+      description: "Review and respond to student doubts.",
+      icon: MessageCircle,
+      color: "blue",
+      path: "/teacher/doubt-requests",
     },
     {
-      id: 2,
-      student: "Priya Patel",
-      subject: "Data Structures",
-      doubt: "AVL Tree rotations",
-      time: "11:30 AM",
-      status: "Pending",
+      title: "Manage Availability",
+      description: "Set your available days and time slots.",
+      icon: CalendarClock,
+      color: "green",
+      path: "/teacher/availability",
     },
     {
-      id: 3,
-      student: "Amit Verma",
-      subject: "Java",
-      doubt: "Inheritance",
-      time: "2:00 PM",
-      status: "Accepted",
+      title: "My Sessions",
+      description: "View your scheduled sessions.",
+      icon: CalendarCheck,
+      color: "orange",
+      path: "/teacher/sessions",
+    },
+    {
+      title: "Service Requests",
+      description: "Review student service requests.",
+      icon: ClipboardList,
+      color: "purple",
+      path: "/teacher/service-requests",
     },
   ];
 
   return (
-    <div>
-      <header className="page-header">
+    <div className="teacher-dashboard">
+      <header className="teacher-dashboard-header">
         <div>
-          <h1>Teacher Dashboard</h1>
-          <p>Welcome back! Manage your student doubt sessions.</p>
+          <h1>Welcome Back, Teacher!</h1>
+          <p>Here's an overview of your teaching activities.</p>
         </div>
-        <span className="online-label">● Available</span>
+
+        <div className="teacher-dashboard-notification">
+          <NotificationBell requests={sampleRequests} />
+        </div>
       </header>
 
-      <section className="stats-grid">
-        <StatCard title="Total Requests" value={requests.length} color="#ffffff" />
-        <StatCard
-          title="Pending Requests"
-          value={requests.filter((r) => r.status === "Pending").length}
-          color="#fff8e7"
-        />
-        <StatCard
-          title="Accepted Requests"
-          value={requests.filter((r) => r.status === "Accepted").length}
-          color="#edfff3"
-        />
-      </section>
+      <section className="teacher-dashboard-stats">
+        <div className="teacher-stat-card">
+          <div className="teacher-stat-icon blue-icon">
+            <MessageCircle size={26} />
+          </div>
+          <div>
+            <p>Pending Doubts</p>
+            <h2>{pendingDoubts}</h2>
+            <span>Requests awaiting review</span>
+          </div>
+        </div>
 
-      <section className="dashboard-panel">
-        <h2>Recent Doubt Requests</h2>
-
-        <div className="table-scroll">
-          <table className="teacher-table">
-            <thead>
-              <tr>
-                <th>Student</th>
-                <th>Subject</th>
-                <th>Doubt</th>
-                <th>Time</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {requests.map((request) => (
-                <tr key={request.id}>
-                  <td>{request.student}</td>
-                  <td>{request.subject}</td>
-                  <td>{request.doubt}</td>
-                  <td>{request.time}</td>
-                  <td><StatusBadge status={request.status} /></td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <div className="teacher-stat-card">
+          <div className="teacher-stat-icon green-icon">
+            <CalendarCheck size={26} />
+          </div>
+          <div>
+            <p>Upcoming Sessions</p>
+            <h2>{upcomingSessions}</h2>
+            <span>Sessions in your schedule</span>
+          </div>
         </div>
       </section>
 
-      <section className="dashboard-panel">
-        <h2>Today's Schedule</h2>
-        <div className="schedule-item">
-          <strong>10:00 AM</strong>
-          <div>
-            <p>DBMS Doubt Session</p>
-            <small>Normalization and 3NF</small>
-          </div>
+      <section className="teacher-dashboard-actions">
+        <div className="teacher-section-heading">
+          <h2>Quick Actions</h2>
+          <p>Choose a section to manage your teaching activities.</p>
         </div>
-        <div className="schedule-item">
-          <strong>2:00 PM</strong>
-          <div>
-            <p>Java Doubt Session</p>
-            <small>Inheritance and polymorphism</small>
-          </div>
+
+        <div className="teacher-action-grid">
+          {quickActions.map((action) => {
+            const Icon = action.icon;
+
+            return (
+              <Link
+                to={action.path}
+                className="teacher-action-card"
+                key={action.title}
+              >
+                <div className={`teacher-action-icon ${action.color}-icon`}>
+                  <Icon size={25} strokeWidth={1.8} />
+                </div>
+
+                <div className="teacher-action-content">
+                  <h3>{action.title}</h3>
+                  <p>{action.description}</p>
+                </div>
+
+                <ArrowRight
+                  size={19}
+                  className="teacher-action-arrow"
+                />
+              </Link>
+            );
+          })}
+        </div>
+      </section>
+
+      <section className="teacher-dashboard-tip">
+        <div className="teacher-tip-icon">
+          <Lightbulb size={25} />
+        </div>
+        <div>
+          <h3>Stay Organized</h3>
+          <p>
+            Keep your availability updated and review student requests
+            regularly to manage your sessions smoothly.
+          </p>
         </div>
       </section>
     </div>
